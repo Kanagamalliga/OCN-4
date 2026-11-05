@@ -58,10 +58,80 @@ Interpret the simulation output.
  <img width="652" height="456" alt="image" src="https://github.com/user-attachments/assets/d22a7a99-0cd4-439e-b49b-b9dde93ab78b" />
 
 ## Python Code 
+```
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Wavelengths
+wavelength = np.array([1549, 1549.8, 1550.6, 1551.4, 1552.2])
+
+# -------------------------------
+# 1. Individual WDM Channels
+# -------------------------------
+x = np.linspace(1545, 1555, 500)
+
+plt.figure(figsize=(6, 4))
+
+for i, w in enumerate(wavelength):
+    power = np.exp(-((x - w) / 0.15)**2)
+    plt.plot(x, power, label="Ch " + str(i+1))
+
+plt.xlabel("Wavelength (nm)")
+plt.ylabel("Power")
+plt.title("Individual WDM Channels")
+plt.legend()
+plt.grid()
+plt.show()
 
 
+# -------------------------------
+# 2. Multiplexed WDM Signal
+# -------------------------------
+multiplexed = np.zeros(len(x))
+
+for w in wavelength:
+    multiplexed += np.exp(-((x - w) / 0.15)**2)
+
+plt.figure(figsize=(6, 4))
+plt.plot(x, multiplexed)
+
+plt.xlabel("Wavelength (nm)")
+plt.ylabel("Power")
+plt.title("Multiplexed WDM Signal")
+plt.grid()
+plt.show()
+
+
+# -------------------------------
+# 3. Effect of Channel Spacing
+# -------------------------------
+spacing = [0.2, 0.8, 1.6]
+
+plt.figure(figsize=(6, 4))
+
+for s in spacing:
+    signal = np.zeros(len(x))
+
+    for i in range(5):
+        w = 1550 + (i - 2) * s
+        signal += np.exp(-((x - w) / 0.15)**2)
+
+    plt.plot(x, signal, label="Spacing = " + str(s) + " nm")
+
+plt.xlabel("Wavelength (nm)")
+plt.ylabel("Power")
+plt.title("Effect of Channel Spacing in WDM")
+plt.legend()
+plt.grid()
+plt.show()
+```
 ## Sample Output
+
+<img width="382" height="492" alt="image" src="https://github.com/user-attachments/assets/2b2a273d-9918-428e-afcf-dc845872717a" />
+
+<img width="426" height="245" alt="image" src="https://github.com/user-attachments/assets/d0859c61-c590-4275-bffe-8560155767c7" />
 
 
 ## Result 
 
+Channels separated with ~1–2 dB insertion loss.
