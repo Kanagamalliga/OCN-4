@@ -125,12 +125,11 @@ plt.legend()
 plt.grid()
 plt.show()
 ```
-## Sample Output
+## Output
 
-<img width="382" height="492" alt="image" src="https://github.com/user-attachments/assets/2b2a273d-9918-428e-afcf-dc845872717a" />
+<img width="986" height="1600" alt="image" src="https://github.com/user-attachments/assets/95fc6b93-2aca-40f0-90fc-0543ef216746" />
 
-<img width="426" height="245" alt="image" src="https://github.com/user-attachments/assets/d0859c61-c590-4275-bffe-8560155767c7" />
-
+<img width="1549" height="1600" alt="image" src="https://github.com/user-attachments/assets/74cc5103-256c-452b-b579-ddd70af5f089" />
 
 ## Result 
 
